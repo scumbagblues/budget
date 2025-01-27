@@ -10,4 +10,10 @@ export default defineConfig({
         }),
         react(),
     ],
+    server: {
+        cors: {
+          origin: 'http://familybudget.test',
+          credentials: true,
+        },
+      },
 });
