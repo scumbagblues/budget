@@ -38,7 +38,7 @@ class BudgetController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:budget,name',
+            'name' => 'required|string|max:255',
             'amount' => 'required|numeric|min:0',
             'extra_spent' => 'required|boolean',
             'category_id' => 'required|exists:budgetcategory,id',
@@ -87,7 +87,7 @@ class BudgetController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:budget,name,' . $id,
+            'name' => 'required|string|max:255',
             'amount' => 'required|numeric|min:0',
             'extra_spent' => 'required|boolean',
             'category_id' => 'required|exists:budgetcategory,id',

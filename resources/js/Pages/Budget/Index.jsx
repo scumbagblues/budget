@@ -36,6 +36,11 @@ const Index = ({ budgets, categories }) => {
         });
     };
 
+    const getCategoryName = (categoryId) => {
+        const category = categories.find(category => category.id === categoryId);
+        return category ? category.name : 'Unknown';
+    };
+
     const closeModal = () => {
         setConfirmingBudgetDeletion(false);
         setBudgetToDelete(null);
@@ -54,7 +59,7 @@ const Index = ({ budgets, categories }) => {
             <Head title="Budget" />
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden">
+                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                         <div className="p-6 text-gray-900 dark:text-gray-100">
                             <CreateBudget className="max-w-xl" categories={categories} />
                             <div className="overflow-x-auto">
@@ -63,6 +68,15 @@ const Index = ({ budgets, categories }) => {
                                         <tr>
                                             <th>
                                                 Name
+                                            </th>
+                                            <th>
+                                                Amount
+                                            </th>
+                                            <th>
+                                                Category
+                                            </th>
+                                            <th>
+                                                Extra Spent
                                             </th>
                                             <th>
                                                 Actions
@@ -74,6 +88,15 @@ const Index = ({ budgets, categories }) => {
                                             <tr key={budget.id}>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                                                     {budget.name}
+                                                </td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
+                                                    {budget.amount}
+                                                </td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
+                                                    {getCategoryName(budget.category_id)}
+                                                </td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
+                                                    {budget.extra_spent ? 'Yes' : 'No'}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
                                                     <Link href={`/budgets/edit/${budget.id}`} className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">

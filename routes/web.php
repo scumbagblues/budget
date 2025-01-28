@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Budget\BudgetController;
+use App\Http\Controllers\Budget\BudgetOwnerController;
 use App\Http\Controllers\Budget\CategoryController;
 use App\Http\Controllers\Budget\ExpenseController;
 use App\Http\Controllers\ProfileController;
@@ -41,6 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/budgets/edit/{id}', [BudgetController::class, 'edit'])->name('budgets.edit');
     Route::post('/budgets/{id}', [BudgetController::class, 'update'])->name('budgets.update');
     Route::delete('/budgets/{id}', [BudgetController::class, 'destroy'])->name('budgets.destroy');
+
+    Route::get('/budget/owner', [BudgetOwnerController::class, 'index'])->name('owners');
 
     Route::get('/expenses', [ExpenseController::class, 'index'])->name('expenses');
 });

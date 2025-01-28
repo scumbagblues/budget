@@ -17,7 +17,7 @@ export default function CreateBudget({ className = '', categories }) {
         e.preventDefault();
 
         post(route('budgets'), {
-            onFinish: () => reset('name'),
+            onFinish: () => reset('name', 'amount', 'extra_spent', 'category_id'),
             forceFormData: true,
         });
     };
