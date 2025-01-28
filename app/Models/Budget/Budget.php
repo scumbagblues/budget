@@ -19,7 +19,7 @@ class Budget extends Model
 
     public function owners()
     {
-        return $this->hasMany(BudgetOwner::class);
+        return $this->belongsTo(BudgetOwner::class);
     }
 
     public function category()

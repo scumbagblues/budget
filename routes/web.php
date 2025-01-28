@@ -44,6 +44,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/budgets/{id}', [BudgetController::class, 'destroy'])->name('budgets.destroy');
 
     Route::get('/budget/owner', [BudgetOwnerController::class, 'index'])->name('owners');
+    Route::post('/budget/owner', [BudgetOwnerController::class, 'store'])->name('owners');
+    Route::get('/budget/owner/edit/{id}', [BudgetOwnerController::class, 'edit'])->name('owners.edit');
+    Route::post('/budget/owner/{id}', [BudgetOwnerController::class, 'update'])->name('owners.update');
+    Route::delete('/budget/owner/{id}', [BudgetOwnerController::class, 'destroy'])->name('owners.destroy');
 
     Route::get('/expenses', [ExpenseController::class, 'index'])->name('expenses');
 });

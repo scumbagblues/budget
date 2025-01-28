@@ -9,10 +9,11 @@ class BudgetOwner extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'budget_id', 'user_id'];
+    protected $table = 'budgetowner';
+    protected $fillable = ['name'];
 
     public function budget()
     {
-        return $this->belongsTo(Budget::class);
+        return $this->hasMany(Budget::class);
     }
 }

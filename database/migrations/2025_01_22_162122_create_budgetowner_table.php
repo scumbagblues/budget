@@ -14,11 +14,8 @@ return new class extends Migration
         Schema::create('budgetowner', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('budget_id');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-
-            $table->foreign('budget_id')->references('id')->on('budget')->onDelete('cascade');
+            $table->softDeletes();
         });
     }
 

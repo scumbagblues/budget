@@ -18,13 +18,19 @@ return new class extends Migration
             $table->boolean('extra_spent')->default(false);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('owner_id');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('category_id')
-                    ->references('id')
-                    ->on('budgetcategory')
-                    ->onDelete('cascade');
+                ->references('id')
+                ->on('budgetcategory')
+                ->onDelete('cascade');
+
+            $table->foreign('owner_id')
+                ->references('id')
+                ->on('budgetowner')
+                ->onDelete('cascade');        
         });
     }
 
