@@ -30,6 +30,12 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Dashboard
                                 </NavLink>
+                                <NavLink
+                                    href={route('budgets.dashboard')}
+                                    active={route().current('budgets.dashboard')}
+                                >
+                                    Budget
+                                </NavLink>
                             </div>
                         </div>
 

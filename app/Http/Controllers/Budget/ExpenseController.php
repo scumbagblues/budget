@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Budget;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ExpenseController extends Controller
 {
@@ -12,7 +13,7 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Expense/Index');
     }
 
     /**

@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Budget\BudgetController;
 use App\Http\Controllers\Budget\CategoryController;
+use App\Http\Controllers\Budget\ExpenseController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
 
 
 Route::get('/', function () {
@@ -33,10 +35,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
     Route::get('/budgets', [BudgetController::class, 'index'])->name('budgets');
+    Route::get('/budgets', [BudgetController::class, 'index'])->name('budgets');
+    Route::get('/budget/dashboard', [BudgetController::class, 'dashboard'])->name('budgets.dashboard');
     Route::post('/budgets', [BudgetController::class, 'store'])->name('budgets');
     Route::get('/budgets/edit/{id}', [BudgetController::class, 'edit'])->name('budgets.edit');
     Route::post('/budgets/{id}', [BudgetController::class, 'update'])->name('budgets.update');
     Route::delete('/budgets/{id}', [BudgetController::class, 'destroy'])->name('budgets.destroy');
+
+    Route::get('/expenses', [ExpenseController::class, 'index'])->name('expenses');
 });
 
 require __DIR__.'/auth.php';

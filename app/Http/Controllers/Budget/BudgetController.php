@@ -55,12 +55,17 @@ class BudgetController extends Controller
         return redirect()->route('budgets');
     }
 
+    public function dashboard()
+    {
+        return Inertia::render('Budget/BudgetDashboard');
+    }
+
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -68,7 +73,12 @@ class BudgetController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $budget = Budget::findOrFail($id);
+        $categories = Category::all();
+        return Inertia::render('Budget/Edit', [
+            'budget' => $budget,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -76,7 +86,22 @@ class BudgetController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255|unique:budget,name,' . $id,
+            'amount' => 'required|numeric|min:0',
+            'extra_spent' => 'required|boolean',
+            'category_id' => 'required|exists:budgetcategory,id',
+        ]);
+    
+        $budget = Budget::findOrFail($id);
+        $budget->update([
+            'name' => $request->name,
+            'amount' => $request->amount,
+            'extra_spent' => $request->extra_spent,
+            'category_id' => $request->category_id,
+        ]);
+    
+        return redirect()->route('budgets');
     }
 
     /**
@@ -84,6 +109,9 @@ class BudgetController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $budget = Budget::findOrFail($id);
+        $budget->delete();
+
+        return redirect()->route('budgets');
     }
 }

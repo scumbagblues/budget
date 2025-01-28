@@ -29,7 +29,7 @@ const Index = ({ budgets, categories }) => {
     const deleteBudget = (e) => {
         e.preventDefault();
 
-        destroy(route('budget.destroy', budgetToDelete.id), {
+        destroy(route('budgets.destroy', budgetToDelete.id), {
             preserveScroll: true,
             onSuccess: () => closeModal(),
             onFinish: () => reset(),

@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Budget extends Model
 {
-    use SoftDeletes;
-
+    
     protected $table = 'budget';
     protected $fillable = [
         'name', 
