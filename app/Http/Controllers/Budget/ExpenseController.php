@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Budget;
 
 use App\Http\Controllers\Controller;
+use App\Models\Budget\Budget;
+use App\Models\Budget\Expense;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ExpenseController extends Controller
@@ -12,8 +15,13 @@ class ExpenseController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return Inertia::render('Expense/Index');
+    {   
+        $budget = Budget::all();
+        $expenses = Expense::with('budget.owner')->orderBy('budget_id', 'desc')->get();
+        return Inertia::render('Expense/Index', [
+            'expenses' => $expenses,
+            'budgets' => $budget,
+        ]);
     }
 
     /**
@@ -29,7 +37,20 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'amount' => 'required|numeric|min:0',
+            'description' => 'required|string|max:255',
+            'budget_id' => 'required',
+        ]);
+        
+        Expense::create([
+            'amount' => $request->amount,
+            'budget_id' => $request->budget_id,
+            'description' => $request->description,
+            'user_id' => Auth::id(), // Agregar el ID del usuario autenticado
+        ]);
+
+        return redirect()->route('expenses');
     }
 
     /**
@@ -45,7 +66,12 @@ class ExpenseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $budget = Budget::all();
+        $expense = Expense::findOrFail($id);
+        return Inertia::render('Expense/Edit', [
+            'expense' => $expense,
+            'budgets' => $budget,
+        ]);
     }
 
     /**
@@ -53,7 +79,20 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'amount' => 'required|numeric|min:0',
+            'budget_id' => 'required',
+            'description' => 'required|string|max:255',
+        ]);
+    
+        $expense = Expense::findOrFail($id);
+        $expense->update([
+            'amount' => $request->amount,
+            'budget_id' => $request->budget_id,
+            'description' => $request->description,
+        ]);
+    
+        return redirect()->route('expenses');
     }
 
     /**
@@ -61,6 +100,8 @@ class ExpenseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $expense = Expense::findOrFail($id);
+        $expense->delete();
+        return redirect()->route('expenses');
     }
 }

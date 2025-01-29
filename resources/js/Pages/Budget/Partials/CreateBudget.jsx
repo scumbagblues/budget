@@ -5,19 +5,20 @@ import TextInput from '@/Components/TextInput';
 import { useForm } from '@inertiajs/react';
 
 
-export default function CreateBudget({ className = '', categories }) {
+export default function CreateBudget({ className = '', categories, owners }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         amount: '',
         extra_spent: false,
         category_id: '',
+        owner_id: '',
     });
 
     const submit = (e) => {
         e.preventDefault();
 
         post(route('budgets'), {
-            onFinish: () => reset('name', 'amount', 'extra_spent', 'category_id'),
+            onFinish: () => reset('name', 'amount', 'extra_spent', 'category_id', 'owner_id'),
             forceFormData: true,
         });
     };
@@ -46,7 +47,7 @@ export default function CreateBudget({ className = '', categories }) {
                     <InputError message={errors.name} className="mt-2" />
                 </div>
                 <div className="flex items-center mb-4">
-                    <div className="flex-1">
+                    <div className="flex-3">
                         <TextInput
                             id="amount"
                             name="amount"
@@ -90,6 +91,23 @@ export default function CreateBudget({ className = '', categories }) {
                         ))}
                     </select>
                     <InputError message={errors.category_id} className="mt-2" />
+                </div>
+                <div className="mb-4">
+                    <select
+                        name="owner_id"
+                        value={data.owner_id}
+                        onChange={(e) => setData('owner_id', e.target.value)}
+                        className="input input-bordered w-full max-w-xs"
+                        required
+                    >
+                        <option value="">Select an owner</option>
+                        {owners.map((owner) => (
+                            <option key={owner.id} value={owner.id}>
+                                {owner.name}
+                            </option>
+                        ))}
+                    </select>
+                    <InputError message={errors.owner_id} className="mt-2" />
                 </div>
                 <div className="mt-4 flex items-center justify-end">
                     <PrimaryButton disabled={processing}>

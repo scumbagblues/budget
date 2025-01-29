@@ -14,6 +14,6 @@ class BudgetOwner extends Model
 
     public function budget()
     {
-        return $this->hasMany(Budget::class);
+        return $this->hasMany(Budget::class, 'owner_id');
     }
 }

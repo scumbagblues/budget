@@ -14,10 +14,11 @@ class Budget extends Model
         'amount', 
         'user_id',
         'extra_spent',
-        'category_id'
+        'category_id',
+        'owner_id',
     ];
 
-    public function owners()
+    public function owner()
     {
         return $this->belongsTo(BudgetOwner::class);
     }
@@ -25,6 +26,11 @@ class Budget extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function expense()
+    {
+        return $this->hasMany(Expense::class);
     }
 
 

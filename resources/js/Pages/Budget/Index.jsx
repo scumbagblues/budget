@@ -7,7 +7,7 @@ import Modal from '@/Components/Modal';
 import SecondaryButton from '@/Components/SecondaryButton';
 import { Head } from '@inertiajs/react';
 
-const Index = ({ budgets, categories }) => {
+const Index = ({ budgets, categories, owners }) => {
     const [confirmingBudgetDeletion, setConfirmingBudgetDeletion] = useState(false);
     const [budgetToDelete, setBudgetToDelete] = useState(null);
 
@@ -41,6 +41,11 @@ const Index = ({ budgets, categories }) => {
         return category ? category.name : 'Unknown';
     };
 
+    const getOwnerName = (ownerId) => {
+        const owner = owners.find(owner => owner.id === ownerId);
+        return owner ? owner.name : 'Unknown';
+    }
+
     const closeModal = () => {
         setConfirmingBudgetDeletion(false);
         setBudgetToDelete(null);
@@ -61,7 +66,7 @@ const Index = ({ budgets, categories }) => {
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                         <div className="p-6 text-gray-900 dark:text-gray-100">
-                            <CreateBudget className="max-w-xl" categories={categories} />
+                            <CreateBudget className="max-w-xl" categories={categories} owners={owners} />
                             <div className="overflow-x-auto">
                                 <table className="table table-zebra">
                                     <thead>
@@ -70,10 +75,13 @@ const Index = ({ budgets, categories }) => {
                                                 Name
                                             </th>
                                             <th>
-                                                Amount
+                                                Amount Limit
                                             </th>
                                             <th>
                                                 Category
+                                            </th>
+                                            <th>
+                                                Budget Owner
                                             </th>
                                             <th>
                                                 Extra Spent
@@ -94,6 +102,9 @@ const Index = ({ budgets, categories }) => {
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                                                     {getCategoryName(budget.category_id)}
+                                                </td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
+                                                    {getOwnerName(budget.owner_id)}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                                                     {budget.extra_spent ? 'Yes' : 'No'}

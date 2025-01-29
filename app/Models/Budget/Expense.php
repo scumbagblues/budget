@@ -9,10 +9,15 @@ class Expense extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'amount', 'budget_id', 'user_id'];
+    protected $fillable = ['name', 'amount', 'budget_id', 'description','user_id'];
 
     public function owner()
     {
-        return $this->belongsTo(BudgetOwner::class);
+        return $this->hasMany(Budget::class);
+    }
+
+    public function budget()
+    {
+        return $this->belongsTo(Budget::class, 'budget_id');
     }
 }

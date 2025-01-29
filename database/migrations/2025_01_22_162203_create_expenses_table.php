@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->decimal('amount', 8, 2);
-            $table->unsignedBigInteger('owner_id');    
+            $table->unsignedBigInteger('budget_id');    
             $table->string('description')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('owner_id')
+            $table->foreign('budget_id')
                     ->references('id')
-                    ->on('budgetowner')
+                    ->on('budget')
                     ->onDelete('cascade');
         });
     }

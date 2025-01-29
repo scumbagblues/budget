@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Budget;
 
 use App\Http\Controllers\Controller;
 use App\Models\Budget\Budget;
+use App\Models\Budget\BudgetOwner;
 use App\Models\Budget\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +19,11 @@ class BudgetController extends Controller
     {
         $budget = Budget::all();
         $categories = Category::all();
+        $owners = BudgetOwner::all();
         return Inertia::render('Budget/Index', [
             'budgets' => $budget,
             'categories' => $categories,
+            'owners' => $owners,
         ]);
     }
 
@@ -42,6 +45,7 @@ class BudgetController extends Controller
             'amount' => 'required|numeric|min:0',
             'extra_spent' => 'required|boolean',
             'category_id' => 'required|exists:budgetcategory,id',
+            'owner_id' => 'required|exists:budgetowner,id',
         ]);
         
         Budget::create([
@@ -49,6 +53,7 @@ class BudgetController extends Controller
             'amount' => $request->amount,
             'extra_spent' => $request->extra_spent,
             'category_id' => $request->category_id,
+            'owner_id' => $request->owner_id,
             'user_id' => Auth::id(), // Agregar el ID del usuario autenticado
         ]);
 
@@ -75,9 +80,11 @@ class BudgetController extends Controller
     {
         $budget = Budget::findOrFail($id);
         $categories = Category::all();
+        $owners = BudgetOwner::all();
         return Inertia::render('Budget/Edit', [
             'budget' => $budget,
             'categories' => $categories,
+            'owners' => $owners,
         ]);
     }
 
@@ -91,6 +98,7 @@ class BudgetController extends Controller
             'amount' => 'required|numeric|min:0',
             'extra_spent' => 'required|boolean',
             'category_id' => 'required|exists:budgetcategory,id',
+            'owner_id' => 'required',
         ]);
     
         $budget = Budget::findOrFail($id);
@@ -99,6 +107,7 @@ class BudgetController extends Controller
             'amount' => $request->amount,
             'extra_spent' => $request->extra_spent,
             'category_id' => $request->category_id,
+            'owner_id' => $request->owner_id,
         ]);
     
         return redirect()->route('budgets');

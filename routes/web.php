@@ -50,6 +50,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/budget/owner/{id}', [BudgetOwnerController::class, 'destroy'])->name('owners.destroy');
 
     Route::get('/expenses', [ExpenseController::class, 'index'])->name('expenses');
+    Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses');
+    Route::get('/expenses/edit/{id}', [ExpenseController::class, 'edit'])->name('expenses.edit');
+    Route::post('/expenses/{id}', [ExpenseController::class, 'update'])->name('expenses.update');
+    Route::delete('/expenses/{id}', [ExpenseController::class, 'destroy'])->name('expenses.destroy');
 });
 
 require __DIR__.'/auth.php';
