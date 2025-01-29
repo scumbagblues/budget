@@ -10,10 +10,10 @@ export default defineConfig({
         }),
         react(),
     ],
-    /*server: {
+    server: {
         cors: {
-          origin: 'http://familybudget.test',
+          origin: 'https://homebudget.com.mx',
           credentials: true,
         },
-      },*/
+      },
 });
