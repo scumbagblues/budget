@@ -9,10 +9,7 @@ export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
-
-        console.log('Current route:', route().current());
-        console.log('Is current route "budgets"?', route().current('budgets'));    
+        useState(false);   
 
     return (
         <div className="min-h-screen">
@@ -146,8 +143,8 @@ export default function AuthenticatedLayout({ header, children }) {
                             Dashboard
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
-                            href={route("budgets")}
-                            active={route().current("budgets")}
+                            href={route("budgets.dashboard")}
+                            active={route().current("budgets.dashboard")}
                         >
                             Budget
                         </ResponsiveNavLink>
