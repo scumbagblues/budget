@@ -41,6 +41,7 @@ class ExpenseController extends Controller
             'amount' => 'required|numeric|min:0',
             'extra_spent' => 'required|boolean',
             'description' => 'required|string|max:255',
+            'expense_date' => 'required|date',
             'budget_id' => 'required',
         ]);
         
@@ -49,6 +50,7 @@ class ExpenseController extends Controller
             'extra_spent' => $request->extra_spent,
             'budget_id' => $request->budget_id,
             'description' => $request->description,
+            'expense_date' => $request->expense_date,
             'user_id' => Auth::id(), // Agregar el ID del usuario autenticado
         ]);
 
@@ -86,6 +88,7 @@ class ExpenseController extends Controller
             'extra_spent' => 'required|boolean',
             'budget_id' => 'required',
             'description' => 'required|string|max:255',
+            'expense_date' => 'required|date',
         ]);
     
         $expense = Expense::findOrFail($id);
@@ -94,6 +97,7 @@ class ExpenseController extends Controller
             'extra_spent' => $request->extra_spent,
             'budget_id' => $request->budget_id,
             'description' => $request->description,
+            'expense_date' => $request->expense_date,
         ]);
     
         return redirect()->route('expenses');

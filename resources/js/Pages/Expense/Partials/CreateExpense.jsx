@@ -11,6 +11,7 @@ export default function CreateExpense({ className = '', budgets }) {
         extra_spent: false,
         budget_id: '',
         description: '',
+        expense_date: '',
     });
 
     const submit = (e) => {
@@ -87,6 +88,20 @@ export default function CreateExpense({ className = '', budgets }) {
                         onChange={(e) => setData('description', e.target.value)}
                     />
                     <InputError message={errors.description} className="mt-2" />
+                </div>
+                <div className="mb-4">
+                    <TextInput
+                        id="expense_date"
+                        name="expense_date"
+                        type="date"
+                        placeholder="Expense Date"
+                        value={data.expense_date}
+                        className="input input-bordered w-full max-w-xs"
+                        autoComplete="expense_date"
+                        onChange={(e) => setData('expense_date', e.target.value)}
+                        required
+                    />
+                    <InputError message={errors.expense_date} className="mt-2" />
                 </div>
                 <div className="mt-4 flex items-center justify-end">
                     <PrimaryButton disabled={processing}>

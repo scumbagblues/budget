@@ -17,6 +17,7 @@ return new class extends Migration
             $table->boolean('extra_spent')->default(false);
             $table->unsignedBigInteger('budget_id');    
             $table->string('description')->nullable();
+            $table->date('expense_date')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();

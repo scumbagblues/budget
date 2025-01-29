@@ -77,6 +77,9 @@ const Index = ({ expenses, budgets }) => {
                                                 Description
                                             </th>
                                             <th>
+                                                Expense Date
+                                            </th>
+                                            <th>
                                                 Actions
                                             </th>
                                         </tr>
@@ -98,6 +101,9 @@ const Index = ({ expenses, budgets }) => {
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                                                     {expense.description}   
+                                                </td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
+                                                    {expense.expense_date}   
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
                                                     <Link href={`/expenses/edit/${expense.id}`} className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">

@@ -11,6 +11,7 @@ export default function Edit({ expense, budgets }) {
         extra_spent: expense.extra_spent || false,
         budget_id: expense.budget_id || '',
         description: expense.description || '',
+        expense_date: expense.expense_date || '',
     });
 
     useEffect(() => {
@@ -97,6 +98,18 @@ export default function Edit({ expense, budgets }) {
                                     </label>
                                     {errors.extra_spent && <div className="text-red-600">{errors.extra_spent}</div>}
                                 </div>
+                                </div>
+                                <div className='mb-4'>
+                                <TextInput
+                                    id="expense_date"
+                                    name="expense_date"
+                                    type="date"
+                                    value={data.expense_date}
+                                    className="input input-bordered"
+                                    onChange={(e) => setData('expense_date', e.target.value)}
+                                    required
+                                />
+                                <InputError message={errors.expense_date} className="mt-2" />
                                 </div>
                                 <div className="mt-4 flex items-center justify-end">
                                     <PrimaryButton disabled={processing}>
