@@ -11,6 +11,9 @@ export default function AuthenticatedLayout({ header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
+        console.log('Current route:', route().current());
+        console.log('Is current route "budgets"?', route().current('budgets'));    
+
     return (
         <div className="min-h-screen">
             <nav className="border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800">
@@ -141,6 +144,12 @@ export default function AuthenticatedLayout({ header, children }) {
                             active={route().current("dashboard")}
                         >
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("budgets")}
+                            active={route().current("budgets")}
+                        >
+                            Budget
                         </ResponsiveNavLink>
                     </div>
 

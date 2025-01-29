@@ -19,7 +19,7 @@ export default function ForgotPassword({ status }) {
         <GuestLayout>
             <Head title="Forgot Password" />
 
-            <div className="mb-4 text-7xl text-gray-600 dark:text-gray-400">
+            <div className="mb-4 text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-6xl text-center text-gray-600 dark:text-gray-400">
                 HomeBudget
             </div>           
         </GuestLayout>

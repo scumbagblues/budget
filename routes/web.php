@@ -36,7 +36,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
     Route::get('/budgets', [BudgetController::class, 'index'])->name('budgets');
-    Route::get('/budgets', [BudgetController::class, 'index'])->name('budgets');
     Route::get('/budget/dashboard', [BudgetController::class, 'dashboard'])->name('budgets.dashboard');
     Route::post('/budgets', [BudgetController::class, 'store'])->name('budgets');
     Route::get('/budgets/edit/{id}', [BudgetController::class, 'edit'])->name('budgets.edit');
