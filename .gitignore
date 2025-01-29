@@ -18,3 +18,5 @@ yarn-error.log
 /.vscode
 /.zed
 vite.config.js
+/public/hot
+/public/storage
