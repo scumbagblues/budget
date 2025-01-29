@@ -4,6 +4,6 @@ import {
 
 export default function ApplicationLogo(props) {
     return (
-        <CreditCardIcon className="size-14 text-orange-900" />
+        <CreditCardIcon className="size-44 text-orange-900" />
     );
 }
