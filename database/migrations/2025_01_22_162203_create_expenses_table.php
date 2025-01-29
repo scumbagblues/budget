@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->decimal('amount', 8, 2);
+            $table->boolean('extra_spent')->default(false);
             $table->unsignedBigInteger('budget_id');    
             $table->string('description')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

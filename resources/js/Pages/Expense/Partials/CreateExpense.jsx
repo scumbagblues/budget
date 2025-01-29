@@ -8,6 +8,7 @@ import { useForm } from '@inertiajs/react';
 export default function CreateExpense({ className = '', budgets }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         amount: '',
+        extra_spent: false,
         budget_id: '',
         description: '',
     });
@@ -43,6 +44,19 @@ export default function CreateExpense({ className = '', budgets }) {
                             required
                         />
                         {errors.amount && <div className="text-red-600">{errors.amount}</div>}
+                    </div>
+                    <div className="ml-4">
+                        <label className="flex items-center">
+                            <input
+                                type="checkbox"
+                                name="extra_spent"
+                                checked={data.extra_spent}
+                                onChange={(e) => setData('extra_spent', e.target.checked)}
+                                className="checkbox checkbox-primary"
+                            />
+                            <span className="ml-2">Extra Spent</span>
+                        </label>
+                        {errors.extra_spent && <div className="text-red-600">{errors.extra_spent}</div>}
                     </div>
                 </div>
                 <div className="mb-4">

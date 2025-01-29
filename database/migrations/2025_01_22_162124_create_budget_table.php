@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('amount',8,2);
-            $table->boolean('extra_spent')->default(false);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('owner_id');

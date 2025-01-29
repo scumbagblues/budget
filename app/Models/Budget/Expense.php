@@ -9,7 +9,7 @@ class Expense extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'amount', 'budget_id', 'description','user_id'];
+    protected $fillable = ['name', 'amount', 'extra_spent', 'budget_id', 'description','user_id'];
 
     public function owner()
     {

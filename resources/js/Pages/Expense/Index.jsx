@@ -65,6 +65,9 @@ const Index = ({ expenses, budgets }) => {
                                                 Expense Amount
                                             </th>
                                             <th>
+                                                Extra Spent
+                                            </th>
+                                            <th>
                                                 Budget
                                             </th>
                                             <th>
@@ -84,6 +87,9 @@ const Index = ({ expenses, budgets }) => {
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                                                     {expense.amount}
                                                 </td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
+                                                    {expense.extra_spent ? 'Yes' : 'No'}
+                                                </td>    
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                                                     {expense.budget.name}
                                                 </td>

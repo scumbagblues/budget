@@ -36,15 +36,17 @@ class ExpenseController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
         $request->validate([
             'amount' => 'required|numeric|min:0',
+            'extra_spent' => 'required|boolean',
             'description' => 'required|string|max:255',
             'budget_id' => 'required',
         ]);
         
         Expense::create([
             'amount' => $request->amount,
+            'extra_spent' => $request->extra_spent,
             'budget_id' => $request->budget_id,
             'description' => $request->description,
             'user_id' => Auth::id(), // Agregar el ID del usuario autenticado
@@ -78,9 +80,10 @@ class ExpenseController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
+    {   
         $request->validate([
             'amount' => 'required|numeric|min:0',
+            'extra_spent' => 'required|boolean',
             'budget_id' => 'required',
             'description' => 'required|string|max:255',
         ]);
@@ -88,6 +91,7 @@ class ExpenseController extends Controller
         $expense = Expense::findOrFail($id);
         $expense->update([
             'amount' => $request->amount,
+            'extra_spent' => $request->extra_spent,
             'budget_id' => $request->budget_id,
             'description' => $request->description,
         ]);

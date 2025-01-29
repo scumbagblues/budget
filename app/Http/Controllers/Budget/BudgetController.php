@@ -43,7 +43,6 @@ class BudgetController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'amount' => 'required|numeric|min:0',
-            'extra_spent' => 'required|boolean',
             'category_id' => 'required|exists:budgetcategory,id',
             'owner_id' => 'required|exists:budgetowner,id',
         ]);
@@ -51,7 +50,6 @@ class BudgetController extends Controller
         Budget::create([
             'name' => $request->name,
             'amount' => $request->amount,
-            'extra_spent' => $request->extra_spent,
             'category_id' => $request->category_id,
             'owner_id' => $request->owner_id,
             'user_id' => Auth::id(), // Agregar el ID del usuario autenticado
@@ -96,7 +94,6 @@ class BudgetController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'amount' => 'required|numeric|min:0',
-            'extra_spent' => 'required|boolean',
             'category_id' => 'required|exists:budgetcategory,id',
             'owner_id' => 'required',
         ]);
@@ -105,7 +102,6 @@ class BudgetController extends Controller
         $budget->update([
             'name' => $request->name,
             'amount' => $request->amount,
-            'extra_spent' => $request->extra_spent,
             'category_id' => $request->category_id,
             'owner_id' => $request->owner_id,
         ]);

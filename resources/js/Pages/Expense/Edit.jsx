@@ -8,13 +8,14 @@ import InputError from '@/Components/InputError';
 export default function Edit({ expense, budgets }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         amount: expense.amount || '',
+        extra_spent: expense.extra_spent || false,
         budget_id: expense.budget_id || '',
         description: expense.description || '',
     });
 
     useEffect(() => {
         return () => {
-            reset('amount', 'description', 'budget_id');
+            reset('amount', 'description', 'budget_id', 'extra_spent');
         };
     }, []);
 
@@ -51,6 +52,7 @@ export default function Edit({ expense, budgets }) {
                                     />
                                     <InputError message={errors.amount} className="mt-2" />
                                 </div>
+                                
                                 <div className="mb-4">
                                     <select
                                         name="budget_id"
@@ -82,6 +84,19 @@ export default function Edit({ expense, budgets }) {
                                         />
                                         <InputError message={errors.description} className="mt-2" />
                                     </div>
+                                    <div className="ml-4">
+                                    <label className="flex items-center">
+                                        <input
+                                            type="checkbox"
+                                            name="extra_spent"
+                                            checked={data.extra_spent}
+                                            onChange={(e) => setData('extra_spent', e.target.checked)}
+                                            className="checkbox checkbox-primary"
+                                        />
+                                        <span className="ml-2">Extra Spent</span>
+                                    </label>
+                                    {errors.extra_spent && <div className="text-red-600">{errors.extra_spent}</div>}
+                                </div>
                                 </div>
                                 <div className="mt-4 flex items-center justify-end">
                                     <PrimaryButton disabled={processing}>

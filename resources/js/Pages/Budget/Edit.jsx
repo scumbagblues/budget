@@ -27,18 +27,18 @@ export default function Edit({ budget, categories, owners }) {
 
     return (
         <AuthenticatedLayout
-                    header={
-                        <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                            Edit Budget
-                        </h2>
-                    }
+            header={
+                <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                    Edit Budget
+                </h2>
+            }
         >
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                         <div className="p-6 text-gray-900 dark:text-gray-100">
                             <form onSubmit={submit}>
-                                <div className='mb-4'>
+                                <div className="mb-4">
                                     <TextInput
                                         id="name"
                                         name="name"
@@ -47,75 +47,91 @@ export default function Edit({ budget, categories, owners }) {
                                         className="input input-bordered w-full max-w-xs"
                                         autoComplete="name"
                                         isFocused={true}
-                                        onChange={(e) => setData('name', e.target.value)}
+                                        onChange={(e) =>
+                                            setData("name", e.target.value)
+                                        }
                                         required
                                     />
-                                    <InputError message={errors.name} className="mt-2" />
+                                    <InputError
+                                        message={errors.name}
+                                        className="mt-2"
+                                    />
                                 </div>
-
-                                <div className="flex items-center mb-4">
-                                    <div className="flex-2">
-                                        <TextInput
-                                            id="amount"
-                                            name="amount"
-                                            type="number"
-                                            placeholder="Amount"
-                                            value={data.amount}
-                                            className="input input-bordered w-full max-w-xs"
-                                            autoComplete="amount"
-                                            onChange={(e) => setData('amount', e.target.value)}
-                                            required
-                                        />
-                                        <InputError message={errors.amount} className="mt-2" />
-                                    </div>
-                                    <div className="ml-4">
-                                        <label className="flex items-center">
-                                            <input
-                                                type="checkbox"
-                                                name="extra_spent"
-                                                checked={data.extra_spent}
-                                                onChange={(e) => setData('extra_spent', e.target.checked)}
-                                                className="checkbox checkbox-primary"
-                                            />
-                                            <span className="ml-2">Extra Spent</span>
-                                        </label>
-                                        <InputError message={errors.extra_spent} className="mt-2" />
-                                    </div>
+                                <div className="mb-4">
+                                    <TextInput
+                                        id="amount"
+                                        name="amount"
+                                        type="number"
+                                        placeholder="Amount"
+                                        value={data.amount}
+                                        className="input input-bordered w-full max-w-xs"
+                                        autoComplete="amount"
+                                        onChange={(e) =>
+                                            setData("amount", e.target.value)
+                                        }
+                                        required
+                                    />
+                                    <InputError
+                                        message={errors.amount}
+                                        className="mt-2"
+                                    />
                                 </div>
-
                                 <div className="mb-4">
                                     <select
                                         name="category_id"
                                         value={data.category_id}
-                                        onChange={(e) => setData('category_id', e.target.value)}
+                                        onChange={(e) =>
+                                            setData(
+                                                "category_id",
+                                                e.target.value
+                                            )
+                                        }
                                         className="select select-bordered w-full max-w-xs"
                                         required
                                     >
-                                        <option value="">Select a category</option>
+                                        <option value="">
+                                            Select a category
+                                        </option>
                                         {categories.map((category) => (
-                                            <option key={category.id} value={category.id}>
+                                            <option
+                                                key={category.id}
+                                                value={category.id}
+                                            >
                                                 {category.name}
                                             </option>
                                         ))}
                                     </select>
-                                    <InputError message={errors.category_id} className="mt-2" />
+                                    <InputError
+                                        message={errors.category_id}
+                                        className="mt-2"
+                                    />
                                 </div>
                                 <div className="mb-4">
                                     <select
                                         name="owner_id"
                                         value={data.owner_id}
-                                        onChange={(e) => setData('owner_id', e.target.value)}
+                                        onChange={(e) =>
+                                            setData("owner_id", e.target.value)
+                                        }
                                         className="select select-bordered w-full max-w-xs"
                                         required
                                     >
-                                        <option value="">Select an owner</option>
+                                        <option value="">
+                                            Select an owner
+                                        </option>
                                         {owners.map((owner) => (
-                                            <option key={owner.id} value={owner.id}>
+                                            <option
+                                                key={owner.id}
+                                                value={owner.id}
+                                            >
                                                 {owner.name}
                                             </option>
                                         ))}
                                     </select>
-                                    <InputError message={errors.owner} className="mt-2" />
+                                    <InputError
+                                        message={errors.owner}
+                                        className="mt-2"
+                                    />
                                 </div>
 
                                 <div className="mt-4 flex items-center justify-end">
@@ -125,10 +141,9 @@ export default function Edit({ budget, categories, owners }) {
                                 </div>
                             </form>
                         </div>
-                    </div>        
-                </div>    
-            </div>    
-            
+                    </div>
+                </div>
+            </div>
         </AuthenticatedLayout>
     );
 }

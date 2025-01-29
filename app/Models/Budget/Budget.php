@@ -13,7 +13,6 @@ class Budget extends Model
         'name', 
         'amount', 
         'user_id',
-        'extra_spent',
         'category_id',
         'owner_id',
     ];

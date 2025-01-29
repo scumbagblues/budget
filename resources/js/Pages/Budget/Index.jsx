@@ -84,9 +84,6 @@ const Index = ({ budgets, categories, owners }) => {
                                                 Budget Owner
                                             </th>
                                             <th>
-                                                Extra Spent
-                                            </th>
-                                            <th>
                                                 Actions
                                             </th>
                                         </tr>
@@ -105,9 +102,6 @@ const Index = ({ budgets, categories, owners }) => {
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                                                     {getOwnerName(budget.owner_id)}
-                                                </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
-                                                    {budget.extra_spent ? 'Yes' : 'No'}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
                                                     <Link href={`/budgets/edit/${budget.id}`} className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
