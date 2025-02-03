@@ -3,11 +3,13 @@
 use App\Http\Controllers\Budget\BudgetController;
 use App\Http\Controllers\Budget\BudgetOwnerController;
 use App\Http\Controllers\Budget\CategoryController;
+use App\Http\Controllers\Budget\DashboardController;
 use App\Http\Controllers\Budget\ExpenseController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
 
 
 
@@ -20,9 +22,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/expenses/edit/{id}', [ExpenseController::class, 'edit'])->name('expenses.edit');
     Route::post('/expenses/{id}', [ExpenseController::class, 'update'])->name('expenses.update');
     Route::delete('/expenses/{id}', [ExpenseController::class, 'destroy'])->name('expenses.destroy');
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 require __DIR__.'/auth.php';
