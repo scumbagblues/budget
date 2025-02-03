@@ -16,8 +16,12 @@ class ExpenseController extends Controller
      */
     public function index()
     {   
-        $budget = Budget::all();
-        $expenses = Expense::with('budget.owner')->orderBy('budget_id', 'desc')->get();
+        $budget = Budget::orderBy('name', 'asc')->get();
+        $expenses = Expense::with('budget.owner')
+            ->join('budget', 'expenses.budget_id', '=', 'budget.id')
+            ->orderBy('budget.name', 'asc')
+            ->select('expenses.*')
+            ->get();
         return Inertia::render('Expense/Index', [
             'expenses' => $expenses,
             'budgets' => $budget,
@@ -70,7 +74,7 @@ class ExpenseController extends Controller
      */
     public function edit(string $id)
     {
-        $budget = Budget::all();
+        $budget = Budget::orderBy('name', 'asc')->get();
         $expense = Expense::findOrFail($id);
         return Inertia::render('Expense/Edit', [
             'expense' => $expense,

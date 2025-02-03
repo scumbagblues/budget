@@ -17,9 +17,9 @@ class BudgetController extends Controller
      */
     public function index()
     {
-        $budget = Budget::all();
-        $categories = Category::all();
-        $owners = BudgetOwner::all();
+        $budget = Budget::orderBy('name', 'asc')->get();
+        $categories = Category::orderBy('name', 'asc')->get();
+        $owners = BudgetOwner::orderBy('name', 'asc')->get();
         return Inertia::render('Budget/Index', [
             'budgets' => $budget,
             'categories' => $categories,
