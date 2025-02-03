@@ -62,8 +62,11 @@ const Dashboard = ({ categories }) => {
                                                                             {
                                                                                 fontSize: 12,
                                                                                 transform:
-                                                                                    "translate(0px, 0px)",
+                                                                                    "translate(0px, 0px)",  
                                                                             },
+                                                                        [`& .${gaugeClasses.valueArc}`]: {
+                                                                                fill: '#d97707',
+                                                                            },    
                                                                     }}
                                                                     text={({
                                                                         value,
