@@ -35,7 +35,7 @@ const Dashboard = ({ categories }) => {
                                                 return (
                                                     <div key={bud.id}>
                                                         <div className="justify-center items-center">
-                                                            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                                            <h3 className="text-center font-medium text-gray-900 dark:text-gray-100">
                                                                 {bud.name}
                                                             </h3>
                                                             <div className='flex justify-center items-center w-full'
