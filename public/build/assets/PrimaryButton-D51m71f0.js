@@ -1,0 +1,1 @@
+import{j as a}from"./app-Wd21_RW1.js";function u({className:n="",disabled:t,children:r,...o}){return a.jsx("button",{...o,className:`btn btn-neutral ${t&&"opacity-25"} `+n,disabled:t,children:r})}export{u as P};

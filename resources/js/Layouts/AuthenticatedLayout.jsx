@@ -12,7 +12,7 @@ export default function AuthenticatedLayout({ header, children }) {
         useState(false);   
 
     return (
-        <div className="min-h-screen">
+        <div className="flex flex-col min-h-screen">
             <nav className="border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 justify-between">
@@ -184,7 +184,7 @@ export default function AuthenticatedLayout({ header, children }) {
                 </header>
             )}
 
-            <main>{children}</main>
+            <main className="flex-grow">{children}</main>
             <footer className="footer footer-center bg-yellow-900 text-primary-content p-10">
                 <aside>
                     <p className="font-bold text-gray-50">
