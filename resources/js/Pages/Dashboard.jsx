@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
 
 
@@ -38,7 +38,8 @@ const Dashboard = ({ categories }) => {
                                                             <h3 className="text-center font-medium text-gray-900 dark:text-gray-100">
                                                                 {bud.name}
                                                             </h3>
-                                                            <div className='flex justify-center items-center w-full'
+                                                            <Link href={`dashboard/expenses/${bud.id}`}>
+                                                                <div className='flex justify-center items-center w-full'
                                                                 style={{
                                                                     height: "100px",
                                                                     width: "120%",
@@ -75,7 +76,8 @@ const Dashboard = ({ categories }) => {
                                                                         `${value} / ${valueMax}`
                                                                     }
                                                                 />
-                                                            </div>
+                                                                </div>
+                                                            </Link>
                                                         </div>
                                                     </div>
                                                 );

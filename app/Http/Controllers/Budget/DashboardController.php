@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Budget;
 
 use App\Http\Controllers\Controller;
+use App\Models\Budget\Budget;
 use App\Models\Budget\Category;
+use App\Models\Budget\Expense;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -41,8 +43,14 @@ class DashboardController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
+    {   
+        $budgetOwner = Budget::with('owner')->findOrFail($id);
+        $budgetExpense = Expense::with('budget')->where('budget_id',$id)->get();
+       
+        return Inertia::render('Dashboard/Expenses',[
+            'budget' => $budgetOwner,
+            'expenses' => $budgetExpense,
+        ]);
     }
 
     /**

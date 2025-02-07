@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/expenses/{id}', [ExpenseController::class, 'destroy'])->name('expenses.destroy');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/expenses/{budget}', [DashboardController::class, 'show'])->name('dashboard.expenses');
 });
 
 require __DIR__.'/auth.php';
