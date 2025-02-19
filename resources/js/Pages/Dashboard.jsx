@@ -19,7 +19,7 @@ const Dashboard = ({ categories }) => {
                 <div className="mx-auto max-w-9xl sm:px-5 lg:px-9">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                         <div className="p-10 text-gray-900 dark:text-gray-100">
-                            <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-3">
+                            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-3">
                                     <div className="card bg-base-100 shadow-xl">
                                         <div className="card-body">
                                             <div className="flex justify-center items-center mb-4">
@@ -35,7 +35,7 @@ const Dashboard = ({ categories }) => {
                                         </div>
                                     </div>      
                             </div>           
-                            <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-3 mt-6">            
+                            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-3 mt-6">            
                             {categories.map((category) => (
                                     <div key={category.id} className="card bg-base-100 shadow-xl">
                                         <div className="card-body">
