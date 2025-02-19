@@ -15,12 +15,27 @@ const Dashboard = ({ categories }) => {
             }
         >
             <Head title="Dashboard" />
-
             <div className="py-12">
                 <div className="mx-auto max-w-9xl sm:px-5 lg:px-9">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                         <div className="p-10 text-gray-900 dark:text-gray-100">
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
+                            <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-3">
+                                    <div className="card bg-base-100 shadow-xl">
+                                        <div className="card-body">
+                                            <div className="flex justify-center items-center mb-4">
+                                                <h2 className="card-title">
+                                                    Shortcuts   
+                                                </h2>
+                                            </div>
+                                            <div className="card-actions justify-center">
+                                                <Link href={route('expenses')} className="btn btn-primary">
+                                                        Add Expense
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>      
+                            </div>           
+                            <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-3 mt-6">            
                             {categories.map((category) => (
                                     <div key={category.id} className="card bg-base-100 shadow-xl">
                                         <div className="card-body">
@@ -29,7 +44,7 @@ const Dashboard = ({ categories }) => {
                                                     {category.name}
                                                 </h2>    
                                             </div>
-                                            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-3">
+                                            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                                             {category.budget.map(bud => {
                                                 const totalExpenses = bud.expense.reduce((sum, expense) => sum + parseFloat(expense.amount), 0).toFixed(2);
                                                 return (

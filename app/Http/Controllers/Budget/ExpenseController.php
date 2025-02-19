@@ -19,7 +19,7 @@ class ExpenseController extends Controller
         $budget = Budget::orderBy('name', 'asc')->get();
         $expenses = Expense::with('budget.owner')
             ->join('budget', 'expenses.budget_id', '=', 'budget.id')
-            ->orderBy('budget.name', 'asc')
+            ->orderBy('created_at', 'desc')
             ->select('expenses.*')
             ->get();
         return Inertia::render('Expense/Index', [
